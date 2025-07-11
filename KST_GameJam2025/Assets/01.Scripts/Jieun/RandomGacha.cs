@@ -22,8 +22,8 @@ public class RandomGacha : MonoBehaviour
     [Header("스폰 지점 부모 - 빈 오브젝트")]
     [SerializeField] private Transform spawnPointParent;   // “SpawnPoint” 오브젝트 drag
 
-    [Header("히어로 프리팹")]
-    [SerializeField] private GameObject heroPrefab;        //  Hero 프리팹 drag
+    // [Header("히어로 프리팹")]
+    // [SerializeField] private GameObject heroPrefab;        //  Hero 프리팹 drag
 
     private List<Transform> _allSlots   = new List<Transform>();   // 16칸 전부
     private System.Random  _rng         = new System.Random();     // C# 난수
@@ -32,9 +32,9 @@ public class RandomGacha : MonoBehaviour
     {
         // 코인 룰렛 요소 추가
         coinGachaList.Add("Low_WhiteBread");
-        coinGachaList.Add("Low_Baguette");
-        coinGachaList.Add("Low_RollBread");
-        coinGachaList.Add("Low_Croissant");
+        // coinGachaList.Add("Low_Baguette");
+        // coinGachaList.Add("Low_RollBread");
+        // coinGachaList.Add("Low_Croissant");
         
         //스페셜가챠 1 요소 추가
         specialGacha1List.Add("Boom");
@@ -57,7 +57,7 @@ public class RandomGacha : MonoBehaviour
     /// <summary>
     /// 비어 있는 칸 중 하나를 골라 Hero를 배치한다
     /// </summary>
-    public void SpawnHero()
+    public void SpawnHero(string heroName)
     {
         // 1) 아직 비어 있는 슬롯만 필터
         List<Transform> emptySlots = _allSlots.FindAll(slot => slot.childCount == 0);
@@ -73,12 +73,21 @@ public class RandomGacha : MonoBehaviour
         Transform targetSlot = emptySlots[pick];
 
         // 3) 프리팹 인스턴스 → 슬롯의 자식으로
-        GameObject hero = Instantiate(heroPrefab, targetSlot.position, Quaternion.identity, targetSlot);
-        hero.name = $"Hero_{targetSlot.name}";   // 디버깅 편하게 이름 붙이기
+        //GameObject hero = Instantiate(heroPrefab, targetSlot.position, Quaternion.identity, targetSlot);
+        PoolManager.Instance.HeroSpawn(heroName, targetSlot.transform);
     }
 
     
-    
+    private string RandomGachaSystem(List<string> targetList)
+    {
+        string result = "";
+        
+        //Debug.Log($"list.count = {targetList.Count}");
+        
+        result = targetList[Random.Range(0, targetList.Count)];
+        
+        return result;
+    }
 
     
 
@@ -92,7 +101,8 @@ public class RandomGacha : MonoBehaviour
         PopUpPricePanel(coinGachaPanel, coinGachaPriceText, gachaResult);
         
         //뽑힌 영웅 랜덤한 위치에 생성
-        
+        SpawnHero(gachaResult);
+
     }
 
     
@@ -103,23 +113,12 @@ public class RandomGacha : MonoBehaviour
         panel.SetActive(true);
 
         Sequence seq = DOTween.Sequence();
-
+        
         seq.Append(panel.transform.DOScale(new Vector3(0.6f, 0.6f), 0.4f))
             //.Join(tmp.transform.DOScale(new Vector3(1.05f, 1.05f), 0.4f))
             .Append(panel.transform.DOScale(new Vector3(0.5f, 0.5f), 0.2f))
             //.Join(tmp.transform.DOScale(new Vector3(1f, 1f), 0.2f));
             .AppendCallback(() => panel.SetActive(false));
-    }
-
-    public void HeroLoad()
-    {
-        
-    }
-
-    public void HeroSpawn(string heroName)
-    {
-        
-        GameObject heroPrefab = Resources.Load<GameObject>(heroName);
     }
     
     public void SpecialGacha1ButtonClick()
@@ -133,14 +132,5 @@ public class RandomGacha : MonoBehaviour
     
     //public void 
 
-    private string RandomGachaSystem(List<string> targetList)
-    {
-        string result = "";
-        
-        Debug.Log($"list.count = {targetList.Count}");
-        
-        result = targetList[Random.Range(0, targetList.Count)];
-        
-        return result;
-    }
+    
 }
