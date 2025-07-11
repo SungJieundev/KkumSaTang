@@ -6,13 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="b031a002-6f9a-4424-ba76-e8d97d1017f8" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KST_GameJam2025/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KST_GameJam2025/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/JieunTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/JieunTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/PoolManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/PoolManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Jieun/RandomGacha.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Jieun/RandomGacha.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/Burnt_Toast.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefabs/Burnt_Toast.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/Low_WhiteBread.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/Low_WhiteBread.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/MainMerge.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/MainMerge.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Low_Croissant.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Low_Croissant.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/White_Bread.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/White_Bread.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/식빵1.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/식빵1.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/크루아상1.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/크루아상1.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +29,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Core/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Core/PoolManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Jieun/RandomGacha.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
