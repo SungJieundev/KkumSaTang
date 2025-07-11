@@ -7,9 +7,9 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     private Vector3 direction;
     private GameObject target;
-    private int damage;
+    private float damage;
 
-    public void SetTarget(GameObject targetObj, int dmg)
+    public void SetTarget(GameObject targetObj, float dmg)
     {
         target = targetObj;
         damage = dmg;
@@ -18,21 +18,24 @@ public class Bullet : MonoBehaviour
         {
             direction = (target.transform.position - transform.position).normalized;
         }
+
+        //3초 뒤 자동 반환 예약
+        Invoke("AutoDespawn", 3f);
     }
 
     void Update()
     {
         if (target == null)
         {
-            Destroy(gameObject);
+            AutoDespawn(); // 타겟이 사라지면 바로 반환
             return;
         }
 
-        // x축 위주로 이동
-        transform.position += new Vector3(direction.x, direction.y, 0f) * speed * Time.deltaTime;
+        // 이동
+        transform.position += direction * speed * Time.deltaTime;
 
-        // 충돌 판정
-        if (Vector3.Distance(transform.position, target.transform.position) < 0.3f)
+        // 충돌 거리 판정
+        if (Vector3.Distance(transform.position, target.transform.position) < 0.5f)
         {
             MonsterHp hp = target.GetComponent<MonsterHp>();
             if (hp != null)
@@ -40,7 +43,18 @@ public class Bullet : MonoBehaviour
                 hp.TakeDamage(damage);
             }
 
-            Destroy(gameObject);
+            CancelInvoke("AutoDespawn"); // 이미 명중했으므로 자동 반환 예약 취소
+            PoolManager.Instance.BulletDeSpawn(gameObject);
         }
+    }
+
+    void AutoDespawn()
+    {
+        PoolManager.Instance.BulletDeSpawn(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke(); // 혹시 꺼질 때 예약 취소 처리
     }
 }

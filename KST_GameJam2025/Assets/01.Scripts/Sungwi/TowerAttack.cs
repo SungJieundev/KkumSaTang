@@ -6,7 +6,7 @@ public class TowerAttack : MonoBehaviour
 {
     [Header("공격 설정")]
     public float attackInterval = 1f;    // 1초에 한 번 공격
-    public int attackPower = 2;          // 공격력
+    public float attackPower = 2;          // 공격력
 
     [Header("총알 프리팹")]
     public GameObject bulletPrefab;      // 발사할 총알 프리팹
@@ -43,10 +43,12 @@ public class TowerAttack : MonoBehaviour
         GameObject target = monstersInRange[0];
         if (target == null) return;
 
-        // 총알 생성
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        // PoolManager에서 총알 가져오기 (반환값 받아야 함)
+        GameObject bullet = PoolManager.Instance.BulletSpawn(firePoint);
 
-        // 총알에 타겟과 공격력 정보 전달
+        if (bullet == null) return;
+
+        // 총알 스크립트에 타겟과 공격력 전달
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         if (bulletScript != null)
         {

@@ -38,29 +38,48 @@ public class PoolManager : MonoBehaviour
     {
         
     }
-    
-    public void BulletDeSpawn(Transform pooler, Queue<GameObject> pooling, GameObject bullet)
+
+    public void BulletDeSpawn(GameObject bullet)
     {
         bullet.SetActive(false);
-        pooling.Enqueue(bullet);
-        bullet.transform.SetParent(pooler);
+        bullet.transform.SetParent(bulletPooler);
+        bulletQueue.Enqueue(bullet);
     }
 
-    public void BulletSpawn(Transform spawnPos)
+    public GameObject BulletSpawn(Transform spawnPos)
+    {
+        GameObject bullet;
+
+        if (bulletQueue.Count > 0)
+        {
+            bullet = bulletQueue.Dequeue();
+            bullet.transform.SetParent(null);
+            bullet.transform.position = spawnPos.position;
+            bullet.SetActive(true);
+        }
+        else
+        {
+            bullet = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
+        }
+
+        return bullet;
+    }
+
+    /*public void BulletSpawn(Transform spawnPos)
     {
         if (bulletPooler.transform.childCount > 0)
         {
             GameObject bullet = bulletQueue.Dequeue();
             bullet.transform.SetParent(null);
             bullet.transform.position = spawnPos.position;
-            
+
             bullet.SetActive(true);
         }
         else
         {
             GameObject bullet = GameObject.Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
         }
-    }
-    
-    
+    }*/
+
+
 }
