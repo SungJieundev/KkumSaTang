@@ -7,18 +7,8 @@
     <list default="true" id="b031a002-6f9a-4424-ba76-e8d97d1017f8" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KST_GameJam2025/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KST_GameJam2025/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/MainMerge.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/MainMerge.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Low_Croissant.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Low_Croissant.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/White_Bread.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/White_Bread.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/식빵1.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/식빵1.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/크루아상1.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/크루아상1.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/VolumeContoller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/VolumeContoller.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
