@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PoolManager : MonoBehaviour
@@ -14,7 +15,9 @@ public class PoolManager : MonoBehaviour
     public Transform bulletPooler = null;
 
     public GameObject bulletPrefab;
-    public GameObject heroPrefab;
+    //public GameObject heroPrefab;
+    
+    
     
     private void Awake()
     {
@@ -29,14 +32,30 @@ public class PoolManager : MonoBehaviour
         heroObject.transform.SetParent(heroPooler);
     }
 
-    public bool IsInHeroList(string heroName)
+    public bool IsInList(string name, List<GameObject> list)
     {
-        return heroList.Contains(GameObject.Find(heroName));
+        bool isInlist = list.Contains(GameObject.Find(name));
+        return isInlist;
     }
 
     public void HeroSpawn(string heroName, Transform spawnPos)
     {
-        
+        if (IsInList(heroName, heroList))
+        {
+            GameObject targetHero = heroList.Find(hero => hero.name == heroName);
+            heroList.Remove(targetHero);
+            targetHero.transform.SetParent(spawnPos);
+            targetHero.transform.position = spawnPos.position;
+            targetHero.SetActive(true);
+        }
+        else
+        {
+            GameObject targetHero = Instantiate(Resources.Load<GameObject>(heroName),spawnPos);
+            //GameObject targetHero = Resources.Load<GameObject>(heroName);
+            targetHero.transform.SetParent(spawnPos);
+            targetHero.transform.position = spawnPos.position;
+            //targetHero.SetActive(true);
+        }
     }
 
     public void BulletDeSpawn(GameObject bullet)

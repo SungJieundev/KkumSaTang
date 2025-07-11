@@ -43,3 +43,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Hero
+    uniqueID: 518022367
+    locked: 0
