@@ -16,6 +16,8 @@ public class PoolManager : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject heroPrefab;
     
+    
+    
     private void Awake()
     {
         if(Instance == null)
