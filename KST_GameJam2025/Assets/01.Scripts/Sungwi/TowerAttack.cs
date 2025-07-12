@@ -5,15 +5,27 @@ using UnityEngine;
 public class TowerAttack : MonoBehaviour
 {
     [Header("공격 설정")]
-    public float attackInterval = 1f;    // 1초에 한 번 공격
-    public float attackPower = 2;          // 공격력
+    public float attackInterval = 1f;
+    public float attackPower = 2f;
+    public float attackRange = 2f; //  추가: 공격 범위
 
     [Header("총알 프리팹")]
-    public GameObject bulletPrefab;      // 발사할 총알 프리팹
-    public Transform firePoint;          // 총알 발사 위치
+    public GameObject bulletPrefab;
+    public Transform firePoint;
 
-    private List<GameObject> monstersInRange = new List<GameObject>();  // 공격 범위 내 몬스터 리스트
+    private List<GameObject> monstersInRange = new List<GameObject>();
     private float attackTimer;
+
+    private CircleCollider2D rangeCollider; //  추가: 콜라이더 참조
+
+    void Awake()
+    {
+        rangeCollider = GetComponent<CircleCollider2D>();
+        if (rangeCollider != null)
+        {
+            rangeCollider.radius = attackRange; //  콜라이더 반영
+        }
+    }
 
     void Update()
     {
@@ -21,13 +33,12 @@ public class TowerAttack : MonoBehaviour
 
         if (attackTimer >= attackInterval && monstersInRange.Count > 0)
         {
-            FaceTarget(monstersInRange[0]);  // 타워가 타겟을 바라보도록 좌우 플립 처리
+            FaceTarget(monstersInRange[0]);
             Attack();
             attackTimer = 0f;
         }
     }
 
-    // 타워 방향 좌우 반전 처리
     void FaceTarget(GameObject target)
     {
         if (target == null) return;
@@ -37,22 +48,35 @@ public class TowerAttack : MonoBehaviour
         scale.x = Mathf.Abs(scale.x) * (isLeft ? 1 : -1);
         transform.localScale = scale;
     }
-    public void SetAttackStats(float power, float interval) //공격력 버프 스킬전용함수
+
+    // 기존 버전 (공격력, 속도만)
+    public void SetAttackStats(float power, float interval)
     {
         attackPower = power;
-        attackInterval = Mathf.Max(0.1f, interval); // 최소값 보호
+        attackInterval = Mathf.Max(0.1f, interval);
     }
+
+    // 확장 버전 (공격력, 속도, 범위까지)
+    public void SetAttackStats(float power, float interval, float range)
+    {
+        attackPower = power;
+        attackInterval = Mathf.Max(0.1f, interval);
+        attackRange = range;
+
+        if (rangeCollider != null)
+        {
+            rangeCollider.radius = attackRange;
+        }
+    }
+
     void Attack()
     {
         GameObject target = monstersInRange[0];
         if (target == null) return;
 
-        // PoolManager에서 총알 가져오기 (반환값 받아야 함)
         GameObject bullet = PoolManager.Instance.BulletSpawn(firePoint);
-
         if (bullet == null) return;
 
-        // 총알 스크립트에 타겟과 공격력 전달
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         if (bulletScript != null)
         {
@@ -63,12 +87,16 @@ public class TowerAttack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Monster") && !monstersInRange.Contains(other.gameObject))
+        {
             monstersInRange.Add(other.gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Monster"))
+        {
             monstersInRange.Remove(other.gameObject);
+        }
     }
 }
