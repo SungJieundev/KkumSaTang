@@ -37,7 +37,11 @@ public class TowerAttack : MonoBehaviour
         scale.x = Mathf.Abs(scale.x) * (isLeft ? 1 : -1);
         transform.localScale = scale;
     }
-
+    public void SetAttackStats(float power, float interval) //공격력 버프 스킬전용함수
+    {
+        attackPower = power;
+        attackInterval = Mathf.Max(0.1f, interval); // 최소값 보호
+    }
     void Attack()
     {
         GameObject target = monstersInRange[0];
