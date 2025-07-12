@@ -20,19 +20,16 @@ public class VolumeContoller : MonoBehaviour
 	 
     public void SetMasterVolume(float volume)
     {
-        Debug.Log("마스터 호출됨");
         audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
     }
 	 
     public void SetMusicVolume(float volume)
     {
-        Debug.Log("배경음 호출됨");
         audioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
     }
 	 
     public void SetSFXVolume(float volume)
     {
-        Debug.Log("효과음 호출됨");
         audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
     }  
 }
