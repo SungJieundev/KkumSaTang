@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4307406283227215222}
   - component: {fileID: 7138426698577091767}
   - component: {fileID: 7730829044183680148}
+  - component: {fileID: -4460616167968245327}
+  - component: {fileID: -1730088288497098557}
   m_Layer: 0
   m_Name: Special_Melon_Croissant
   m_TagString: Hero
@@ -204,3 +206,29 @@ MonoBehaviour:
   attackPowerBonus: 0
   intervalReductionPercent: 0
   rangeMultiplier: 1.25
+--- !u!114 &-4460616167968245327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010382821755903776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad4dd9f975611b478f00f7c31fae63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabIndex: 12
+--- !u!114 &-1730088288497098557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010382821755903776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1346f597321c2445a3b82542484d361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 571ab7ca133ee3a4985d50fca72775ce, type: 2}

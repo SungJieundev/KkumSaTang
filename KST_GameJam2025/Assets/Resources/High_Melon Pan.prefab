@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6459685632147794605}
   - component: {fileID: 161059986788560681}
   - component: {fileID: 1591734134101713391}
+  - component: {fileID: -7773349089173984671}
+  - component: {fileID: -7337206503013070690}
   m_Layer: 0
   m_Name: High_Melon Pan
   m_TagString: Hero
@@ -188,3 +190,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-7773349089173984671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640007291239334997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad4dd9f975611b478f00f7c31fae63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabIndex: 8
+--- !u!114 &-7337206503013070690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640007291239334997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1346f597321c2445a3b82542484d361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 571ab7ca133ee3a4985d50fca72775ce, type: 2}

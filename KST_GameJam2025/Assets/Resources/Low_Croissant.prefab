@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2515716508949068488}
   - component: {fileID: 7198614472922331354}
   - component: {fileID: 5437055940562912974}
+  - component: {fileID: 6864735367784348095}
+  - component: {fileID: 7190533672197944459}
   m_Layer: 0
   m_Name: Low_Croissant
   m_TagString: Hero
@@ -188,3 +190,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6864735367784348095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8992668042334826895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad4dd9f975611b478f00f7c31fae63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabIndex: 3
+--- !u!114 &7190533672197944459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8992668042334826895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1346f597321c2445a3b82542484d361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 571ab7ca133ee3a4985d50fca72775ce, type: 2}

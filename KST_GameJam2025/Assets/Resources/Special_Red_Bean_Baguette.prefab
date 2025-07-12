@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3527197168963543438}
   - component: {fileID: 3175314254933436761}
   - component: {fileID: 8045888045472999782}
+  - component: {fileID: -4405568111952648387}
+  - component: {fileID: -2443769824271136928}
   m_Layer: 0
   m_Name: Special_Red_Bean_Baguette
   m_TagString: Hero
@@ -188,3 +190,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-4405568111952648387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183950924595922508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad4dd9f975611b478f00f7c31fae63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabIndex: 13
+--- !u!114 &-2443769824271136928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183950924595922508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1346f597321c2445a3b82542484d361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 571ab7ca133ee3a4985d50fca72775ce, type: 2}

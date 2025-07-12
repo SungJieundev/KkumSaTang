@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3980143214471826434}
   - component: {fileID: 2070706199324891638}
   - component: {fileID: 7018232600343094063}
+  - component: {fileID: 5009087357654643572}
+  - component: {fileID: -2574595172895357112}
   m_Layer: 0
   m_Name: High_Sweet_Red_Bean_Bun
   m_TagString: Hero
@@ -188,3 +190,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5009087357654643572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144401584972585551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad4dd9f975611b478f00f7c31fae63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabIndex: 6
+--- !u!114 &-2574595172895357112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144401584972585551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1346f597321c2445a3b82542484d361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 571ab7ca133ee3a4985d50fca72775ce, type: 2}

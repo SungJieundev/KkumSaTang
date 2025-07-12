@@ -56,7 +56,7 @@ public class RandomGacha : MonoBehaviour
         highGachaList.Add("High_Choco_Shell_Bread");
         highGachaList.Add("High_Custard_Cream_Bun");
         highGachaList.Add("High_Melon Pan");
-        highGachaList.Add("High_Strawberry_Muffin Variant");
+        highGachaList.Add("High_Strawberry_Muffin");
         highGachaList.Add("High_Sweet_Red_Bean_Bun");
         
         highGachaList.Add("Bang");
@@ -95,28 +95,28 @@ public class RandomGacha : MonoBehaviour
         specialGachaList.Add("High_Choco_Shell_Bread");
         specialGachaList.Add("High_Custard_Cream_Bun");
         specialGachaList.Add("High_Melon Pan");
-        specialGachaList.Add("High_Strawberry_Muffin Variant");
+        specialGachaList.Add("High_Strawberry_Muffin");
         specialGachaList.Add("High_Sweet_Red_Bean_Bun");
         
         specialGachaList.Add("High_Chestnut Loaf");
         specialGachaList.Add("High_Choco_Shell_Bread");
         specialGachaList.Add("High_Custard_Cream_Bun");
         specialGachaList.Add("High_Melon Pan");
-        specialGachaList.Add("High_Strawberry_Muffin Variant");
+        specialGachaList.Add("High_Strawberry_Muffin");
         specialGachaList.Add("High_Sweet_Red_Bean_Bun");
         specialGachaList.Add("High_Chestnut Loaf");
         
         specialGachaList.Add("High_Choco_Shell_Bread");
         specialGachaList.Add("High_Custard_Cream_Bun");
         specialGachaList.Add("High_Melon Pan");
-        specialGachaList.Add("High_Strawberry_Muffin Variant");
+        specialGachaList.Add("High_Strawberry_Muffin");
         specialGachaList.Add("High_Sweet_Red_Bean_Bun");
         
         specialGachaList.Add("High_Chestnut Loaf");
         specialGachaList.Add("High_Choco_Shell_Bread");
         specialGachaList.Add("High_Custard_Cream_Bun");
         specialGachaList.Add("High_Melon Pan");
-        specialGachaList.Add("High_Strawberry_Muffin Variant");
+        specialGachaList.Add("High_Strawberry_Muffin");
         specialGachaList.Add("High_Sweet_Red_Bean_Bun");
         
         
@@ -214,14 +214,14 @@ public class RandomGacha : MonoBehaviour
     {
         string gachaResult = RandomGachaSystem(highGachaList);
         PopUpPricePanel(highGachaPanel, highGachaPriceText, heroNameKorean(gachaResult));
-        SpawnHero(gachaResult);
+        if(gachaResult != "Bang") SpawnHero(gachaResult);
         
     }
     public void SpecialGachaButtonClick()
     {
         string gachaResult = RandomGachaSystem(specialGachaList);
         PopUpPricePanel(specialGachaPanel, specialGachaPriceText, heroNameKorean(gachaResult));
-        SpawnHero(gachaResult);
+        if(gachaResult != "Bang") SpawnHero(gachaResult);
     }
 
     // public string heroNameKorean(string engHeroName)
@@ -277,7 +277,7 @@ public class RandomGacha : MonoBehaviour
         { "High_Choco_Shell_Bread", "초코소라빵" },
         { "High_Custard_Cream_Bun", "슈크림빵" },
         { "High_Melon Pan", "메론빵" },
-        { "High_Strawberry_Muffin Variant", "딸기머핀" },
+        { "High_Strawberry_Muffin", "딸기머핀" },
         { "High_Sweet_Red_Bean_Bun", "단팥빵" },
 
         // Special
