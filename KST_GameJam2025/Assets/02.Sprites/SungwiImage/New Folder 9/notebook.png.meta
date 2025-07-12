@@ -100,9 +100,9 @@ TextureImporter:
       name: notebook_0
       rect:
         serializedVersion: 2
-        x: 3349
-        y: 105
-        width: 2027
+        x: 3633
+        y: 100
+        width: 1743
         height: 2675
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -113,6 +113,27 @@ TextureImporter:
       bones: []
       spriteID: b9e5f5f213b63614b8835c6983300a95
       internalID: 72173761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: notebook_1
+      rect:
+        serializedVersion: 2
+        x: 3285
+        y: 127
+        width: 355
+        height: 2656
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4388544984f32ab45b8e98e8ee67d408
+      internalID: -1923946533
       vertices: []
       indices: 
       edges: []
@@ -129,6 +150,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       notebook_0: 72173761
+      notebook_1: -1923946533
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
