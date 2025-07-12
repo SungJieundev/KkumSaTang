@@ -11,15 +11,21 @@ using Random = UnityEngine.Random;
 public class RandomGacha : MonoBehaviour
 {
     private int _coinGachaCost = 0;
-    private int _specialGacha1Cost = 0;
-    private int _specialGacha2Cost = 0;
+    private int _highGachaCost = 0;
+    private int _specialGachaCost = 0;
     
     public List<string> lowGachaList = new List<string>(); 
     public List<string> highGachaList = new List<string>();
     public List<string> specialGachaList = new List<string>();
     
-    public GameObject coinGachaPanel;
-    public TMP_Text coinGachaPriceText;
+    public GameObject lowGachaPanel;
+    public TMP_Text lowGachaPriceText;
+    
+    public GameObject highGachaPanel;
+    public TMP_Text highGachaPriceText;
+    
+    public GameObject specialGachaPanel;
+    public TMP_Text specialGachaPriceText;
     
     [Header("스폰 지점 부모 - 빈 오브젝트")]
     [SerializeField] private Transform spawnPointParent;   // “SpawnPoint” 오브젝트 drag
@@ -62,10 +68,72 @@ public class RandomGacha : MonoBehaviour
         
         
         //최상위 등급 요소 추가
-        specialGachaList.Add("5");
-        specialGachaList.Add("6");
-        specialGachaList.Add("7");
-        specialGachaList.Add("8");
+        specialGachaList.Add("Bang");
+        specialGachaList.Add("Bang");
+        specialGachaList.Add("Bang");
+        specialGachaList.Add("Bang");
+        
+        
+        specialGachaList.Add("Low_WhiteBread");
+        specialGachaList.Add("Low_Baguette");
+        specialGachaList.Add("Low_RollBread");
+        specialGachaList.Add("Low_Croissant");
+        
+        specialGachaList.Add("Low_WhiteBread");
+        specialGachaList.Add("Low_Baguette");
+        specialGachaList.Add("Low_RollBread");
+        specialGachaList.Add("Low_Croissant");
+        
+        specialGachaList.Add("Low_WhiteBread");
+        specialGachaList.Add("Low_Baguette");
+        specialGachaList.Add("Low_RollBread");
+        specialGachaList.Add("Low_Croissant");
+        
+        
+        
+        specialGachaList.Add("High_Chestnut Loaf");
+        specialGachaList.Add("High_Choco_Shell_Bread");
+        specialGachaList.Add("High_Custard_Cream_Bun");
+        specialGachaList.Add("High_Melon Pan");
+        specialGachaList.Add("High_Strawberry_Muffin Variant");
+        specialGachaList.Add("High_Sweet_Red_Bean_Bun");
+        
+        specialGachaList.Add("High_Chestnut Loaf");
+        specialGachaList.Add("High_Choco_Shell_Bread");
+        specialGachaList.Add("High_Custard_Cream_Bun");
+        specialGachaList.Add("High_Melon Pan");
+        specialGachaList.Add("High_Strawberry_Muffin Variant");
+        specialGachaList.Add("High_Sweet_Red_Bean_Bun");
+        specialGachaList.Add("High_Chestnut Loaf");
+        
+        specialGachaList.Add("High_Choco_Shell_Bread");
+        specialGachaList.Add("High_Custard_Cream_Bun");
+        specialGachaList.Add("High_Melon Pan");
+        specialGachaList.Add("High_Strawberry_Muffin Variant");
+        specialGachaList.Add("High_Sweet_Red_Bean_Bun");
+        
+        specialGachaList.Add("High_Chestnut Loaf");
+        specialGachaList.Add("High_Choco_Shell_Bread");
+        specialGachaList.Add("High_Custard_Cream_Bun");
+        specialGachaList.Add("High_Melon Pan");
+        specialGachaList.Add("High_Strawberry_Muffin Variant");
+        specialGachaList.Add("High_Sweet_Red_Bean_Bun");
+        
+        
+        
+        specialGachaList.Add("Special_Strawberry_Cake");
+        specialGachaList.Add("Special_Chocolate_Roll_Bread");
+        specialGachaList.Add("Special_Melon_Croissant");
+        specialGachaList.Add("Special_Red_Bean_Baguette");
+        
+        
+        
+        //Special_Strawberry_Cake
+        //Special_Chocolate_Roll_Bread
+        //Special_Melon_Croissant
+        //Special_Red_Bean_Baguette
+        
+        specialGachaList.Add("");
         
         // SpawnPoint 아래 자식(A1~D4) 전부 수집
         foreach (Transform child in spawnPointParent)
@@ -130,26 +198,107 @@ public class RandomGacha : MonoBehaviour
 
     
 
-    public void CoinGachaButtonClick()
+    public void LowGachaButtonClick()
     {
         //영웅 랜덤 뽑기
         string gachaResult = RandomGachaSystem(lowGachaList);
         //Debug.Log(RandomGachaSystem(coinGachaList));
-
-        if (IsBang(gachaResult) == false)
-        {
-            //잠시 버튼 위에 보였다 사라지기
-            PopUpPricePanel(coinGachaPanel, coinGachaPriceText, gachaResult);
         
-            //뽑힌 영웅 랜덤한 위치에 생성
-            SpawnHero(gachaResult);
-        }
-        else
-        {
-            // 꽝이벤트 발행
-            onBangEvent.Invoke();
-        }
+        //잠시 버튼 위에 보였다 사라지기
+        PopUpPricePanel(lowGachaPanel, lowGachaPriceText, heroNameKorean(gachaResult));
+        
+        //뽑힌 영웅 랜덤한 위치에 생성
+        SpawnHero(gachaResult);
     }
+    public void HighGachaButtonClick()
+    {
+        string gachaResult = RandomGachaSystem(highGachaList);
+        PopUpPricePanel(highGachaPanel, highGachaPriceText, heroNameKorean(gachaResult));
+        SpawnHero(gachaResult);
+        
+    }
+    public void SpecialGachaButtonClick()
+    {
+        string gachaResult = RandomGachaSystem(specialGachaList);
+        PopUpPricePanel(specialGachaPanel, specialGachaPriceText, heroNameKorean(gachaResult));
+        SpawnHero(gachaResult);
+    }
+
+    // public string heroNameKorean(string engHeroName)
+    // {
+    //     if (engHeroName == "Low_WhiteBread") return "식빵";
+    //     else if (engHeroName == "Low_Baguette") return "바게트";
+    //     else if (engHeroName == "Low_RollBread") return "롤빵";
+    //     else if (engHeroName == "Low_Croissant") return "크루아상";
+    //     
+    //     else if (engHeroName == "High_Chestnut Loaf") return "밤식빵";
+    //     else if (engHeroName == "High_Choco_Shell_Bread") return "초코소라빵";
+    //     else if (engHeroName == "High_Custard_Cream_Bun") return "슈크림빵";
+    //     else if (engHeroName == "High_Melon Pan") return "메론빵";
+    //     else if (engHeroName == "High_Strawberry_Muffin Variant") return "딸기머핀";
+    //     else if (engHeroName == "High_Sweet_Red_Bean_Bun") return "단팥빵";
+    //     
+    //     else if (engHeroName == "Special_Strawberry_Cake") return "딸기케이크";
+    //     else if (engHeroName == "Special_Chocolate_Roll_Bread") return "초코롤빵";
+    //     else if (engHeroName == "Special_Melon_Croissant") return "메론크루아상";
+    //     else if (engHeroName == "Special_Red_Bean_Baguette") return "팥바게트";
+    //     
+    //     else if (engHeroName == "Bang") return "꽝";
+    //
+    //     return "";
+    //     //Special_Strawberry_Cake
+    //     //Special_Chocolate_Roll_Bread
+    //     //Special_Melon_Croissant
+    //     //Special_Red_Bean_Baguette
+    //
+    //     //     lowGachaList.Add("Low_WhiteBread");
+    //     // lowGachaList.Add("Low_Baguette");
+    //     // lowGachaList.Add("Low_RollBread");
+    //     // lowGachaList.Add("Low_Croissant");
+    //
+    //     // (High_Chestnut Loaf);
+    //     // specialGachaList.Add("High_Choco_Shell_Bread");
+    //     // specialGachaList.Add("High_Custard_Cream_Bun");
+    //     // specialGachaList.Add("High_Melon Pan");
+    //     // specialGachaList.Add("High_Strawberry_Muffin Variant");
+    //     // specialGachaList.Add("High_Sweet_Red_Bean_Bun");
+    // }
+    
+    private static readonly Dictionary<string, string> heroNameMap = new Dictionary<string, string>()
+    {
+        // Low
+        { "Low_WhiteBread", "식빵" },
+        { "Low_Baguette", "바게트" },
+        { "Low_RollBread", "롤빵" },
+        { "Low_Croissant", "크루아상" },
+
+        // High
+        { "High_Chestnut Loaf", "밤식빵" },
+        { "High_Choco_Shell_Bread", "초코소라빵" },
+        { "High_Custard_Cream_Bun", "슈크림빵" },
+        { "High_Melon Pan", "메론빵" },
+        { "High_Strawberry_Muffin Variant", "딸기머핀" },
+        { "High_Sweet_Red_Bean_Bun", "단팥빵" },
+
+        // Special
+        { "Special_Strawberry_Cake", "딸기케이크" },
+        { "Special_Chocolate_Roll_Bread", "초코롤빵" },
+        { "Special_Melon_Croissant", "메론크루아상" },
+        { "Special_Red_Bean_Baguette", "팥바게트" },
+
+        // 꽝
+        { "Bang", "꽝" },
+    };
+
+    public string heroNameKorean(string engHeroName)
+    {
+        if (heroNameMap.TryGetValue(engHeroName, out var koreanName))
+            return koreanName;
+
+        return ""; // 매칭되는 이름이 없을 때 빈 문자열
+    }
+    
+    
     
     
 
@@ -179,14 +328,7 @@ public class RandomGacha : MonoBehaviour
             .AppendCallback(() => panel.SetActive(false));
     }
     
-    public void SpecialGacha1ButtonClick()
-    {
-        Debug.Log(RandomGachaSystem(highGachaList));
-    }
-    public void SpecialGacha2ButtonClick()
-    {
-        Debug.Log(RandomGachaSystem(specialGachaList));
-    }
+    
     
     //public void 
 
