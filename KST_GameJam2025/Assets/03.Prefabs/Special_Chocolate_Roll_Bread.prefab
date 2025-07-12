@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4753928160926996252
+--- !u!1 &1360013415103113862
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6424015409427809205}
-  - component: {fileID: 1523688433698025537}
-  - component: {fileID: 5927864222468254156}
-  - component: {fileID: 6069197628854132456}
-  - component: {fileID: 1243221425769987425}
-  - component: {fileID: 4641742671230162854}
+  - component: {fileID: 4286799990859844269}
+  - component: {fileID: 8759005209936728569}
+  - component: {fileID: 1807235751570877178}
+  - component: {fileID: 5558662443614079630}
+  - component: {fileID: 2629988708350977476}
+  - component: {fileID: 3168264031944714451}
   m_Layer: 0
-  m_Name: Low_WhiteBread
+  m_Name: Special_Chocolate_Roll_Bread
   m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6424015409427809205
+--- !u!4 &4286799990859844269
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4753928160926996252}
+  m_GameObject: {fileID: 1360013415103113862}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.14, y: -0.19, z: 0}
+  m_LocalPosition: {x: 4.0699997, y: -2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1523688433698025537
+--- !u!212 &8759005209936728569
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4753928160926996252}
+  m_GameObject: {fileID: 1360013415103113862}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -88,13 +88,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5927864222468254156
+--- !u!58 &1807235751570877178
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4753928160926996252}
+  m_GameObject: {fileID: 1360013415103113862}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -122,14 +122,14 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.3
---- !u!114 &6069197628854132456
+  m_Radius: 7
+--- !u!114 &5558662443614079630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4753928160926996252}
+  m_GameObject: {fileID: 1360013415103113862}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70c4b411cc31bbf49b8a814e13278c7d, type: 3}
@@ -138,15 +138,15 @@ MonoBehaviour:
   attackInterval: 1
   attackPower: 2
   bulletPrefab: {fileID: 4012515176649983220, guid: 942dcf8b9882b9b408bc319205bcf27c, type: 3}
-  firePoint: {fileID: 6424015409427809205}
---- !u!50 &1243221425769987425
+  firePoint: {fileID: 4286799990859844269}
+--- !u!50 &2629988708350977476
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4753928160926996252}
+  m_GameObject: {fileID: 1360013415103113862}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -166,14 +166,14 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &4641742671230162854
+--- !u!95 &3168264031944714451
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4753928160926996252}
+  m_GameObject: {fileID: 1360013415103113862}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1d302513fd1ca0c42956e21e369bc4ee, type: 2}
