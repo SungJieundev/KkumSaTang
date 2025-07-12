@@ -6,23 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b031a002-6f9a-4424-ba76-e8d97d1017f8" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KST_GameJam2025/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KST_GameJam2025/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/LSG 4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/LSG 4.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/GameSceneTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/GameSceneTest.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Jieun/RandomGacha.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Jieun/RandomGacha.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/ObjectClick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/ObjectClick.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/High_Chestnut Loaf.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/High_Chestnut Loaf.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/High_Choco_Shell_Bread.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/High_Choco_Shell_Bread.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/High_Custard_Cream_Bun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/High_Custard_Cream_Bun.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/High_Melon Pan.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/High_Melon Pan.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/High_Strawberry_Muffin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/High_Strawberry_Muffin.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/High_Sweet_Red_Bean_Bun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/High_Sweet_Red_Bean_Bun.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Low_Baguette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Low_Baguette.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Low_Croissant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Low_Croissant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Low_RollBread.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Low_RollBread.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Low_WhiteBread.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Low_WhiteBread.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Special_Chocolate_Roll_Bread.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Special_Chocolate_Roll_Bread.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Special_Melon_Croissant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Special_Melon_Croissant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Special_Red_Bean_Baguette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Special_Red_Bean_Baguette.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Special_Strawberry_Cake.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Special_Strawberry_Cake.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/MoneyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/MoneyManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

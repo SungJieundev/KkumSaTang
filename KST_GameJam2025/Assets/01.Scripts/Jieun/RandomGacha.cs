@@ -6,17 +6,22 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class RandomGacha : MonoBehaviour
 {
-    private int _coinGachaCost = 0;
-    private int _highGachaCost = 0;
-    private int _specialGachaCost = 0;
+    public int lowGachaCost = 0;
+    public int highGachaCost = 0;
+    public int specialGachaCost = 0;
     
     public List<string> lowGachaList = new List<string>(); 
     public List<string> highGachaList = new List<string>();
     public List<string> specialGachaList = new List<string>();
+    
+    private Button lowGachaButton;
+    private Button highGachaButton;
+    private Button specialGachaButton;
     
     public GameObject lowGachaPanel;
     public TMP_Text lowGachaPriceText;
@@ -37,8 +42,11 @@ public class RandomGacha : MonoBehaviour
     private System.Random  _rng         = new System.Random();     // C# 난수
 
     public static RandomGacha Instance;
+    
+    public MoneyManager moneyManager;
 
-    public UnityEvent onBangEvent; 
+    public UnityEvent onBangEvent;
+    
 
     private void Awake()
     {
@@ -196,32 +204,52 @@ public class RandomGacha : MonoBehaviour
         return result;
     }
 
-    
+    private void Start()
+    {
+        lowGachaButton = lowGachaPanel.GetComponentInParent<Button>();
+        highGachaButton = highGachaPanel.GetComponentInParent<Button>();
+        specialGachaButton = specialGachaPanel.GetComponentInParent<Button>();
+    }
+
+    private void Update()
+    {
+        if(moneyManager.currentMoney < lowGachaCost) lowGachaButton.interactable = false;
+        if(moneyManager.currentDia < highGachaCost) highGachaButton.interactable = false;
+        if(moneyManager.currentDia < specialGachaCost) specialGachaButton.interactable = false;
+    }
+
 
     public void LowGachaButtonClick()
     {
-        //영웅 랜덤 뽑기
-        string gachaResult = RandomGachaSystem(lowGachaList);
-        //Debug.Log(RandomGachaSystem(coinGachaList));
-        
-        //잠시 버튼 위에 보였다 사라지기
-        PopUpPricePanel(lowGachaPanel, lowGachaPriceText, heroNameKorean(gachaResult));
-        
-        //뽑힌 영웅 랜덤한 위치에 생성
-        SpawnHero(gachaResult);
+        if (moneyManager != null && moneyManager.SpendMoney(lowGachaCost))
+        {
+            //영웅 랜덤 뽑기
+            string gachaResult = RandomGachaSystem(lowGachaList);
+            
+            //잠시 버튼 위에 보였다 사라지기
+            PopUpPricePanel(lowGachaPanel, lowGachaPriceText, heroNameKorean(gachaResult));
+            
+            //뽑힌 영웅 랜덤한 위치에 생성
+            if(gachaResult != "Bang") SpawnHero(gachaResult);
+        }
     }
     public void HighGachaButtonClick()
     {
-        string gachaResult = RandomGachaSystem(highGachaList);
-        PopUpPricePanel(highGachaPanel, highGachaPriceText, heroNameKorean(gachaResult));
-        if(gachaResult != "Bang") SpawnHero(gachaResult);
-        
+        if (moneyManager != null && moneyManager.SpendDia(highGachaCost))
+        {
+            string gachaResult = RandomGachaSystem(highGachaList);
+            PopUpPricePanel(highGachaPanel, highGachaPriceText, heroNameKorean(gachaResult));
+            if(gachaResult != "Bang") SpawnHero(gachaResult);
+        }
     }
     public void SpecialGachaButtonClick()
     {
-        string gachaResult = RandomGachaSystem(specialGachaList);
-        PopUpPricePanel(specialGachaPanel, specialGachaPriceText, heroNameKorean(gachaResult));
-        if(gachaResult != "Bang") SpawnHero(gachaResult);
+        if (moneyManager != null && moneyManager.SpendMoney(specialGachaCost))
+        {
+            string gachaResult = RandomGachaSystem(specialGachaList);
+            PopUpPricePanel(specialGachaPanel, specialGachaPriceText, heroNameKorean(gachaResult));
+            if(gachaResult != "Bang") SpawnHero(gachaResult);
+        }
     }
 
     // public string heroNameKorean(string engHeroName)
