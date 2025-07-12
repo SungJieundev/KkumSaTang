@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-// Æ¯¼ö Á¶ÇÕ Á¤º¸¸¦ ÀúÀåÇÏ´Â Å¬·¡½º
+// Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 [System.Serializable]
 public class HeroUpgradePair
 {
-    public string requiredA;           // Ã¹ ¹øÂ° ÇÊ¿äÇÑ À¯´Ö ÀÌ¸§
-    public string requiredB;           // µÎ ¹øÂ° ÇÊ¿äÇÑ À¯´Ö ÀÌ¸§
-    public GameObject resultPrefab;    // »ý¼ºµÉ ½ºÆä¼È À¯´Ö ÇÁ¸®ÆÕ
+    public string requiredA;           // Ã¹ ï¿½ï¿½Â° ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+    public string requiredB;           // ï¿½ï¿½ ï¿½ï¿½Â° ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+    public GameObject resultPrefab;    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 public class HeroManager : MonoBehaviour
 {
-    [Header("ÇÁ¸®ÆÕ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public GameObject[] highLevelPrefabs;
     public List<HeroUpgradePair> specialUpgradePairs;
 
-    [Header("¾÷±×·¹ÀÌµå À§Ä¡")]
-    public Transform spawnPoint;
+    //[Header("ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Ä¡")]
+    //public Transform spawnPoint;
 
     public void TryUpgradeLowToHigh()
     {
@@ -30,7 +30,7 @@ public class HeroManager : MonoBehaviour
 
         GameObject[] allHeroes = GameObject.FindGameObjectsWithTag("Hero");
 
-        // ÀÌ¸§º°·Î ±×·ìÈ­
+        // ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½È­
         foreach (string name in lowNames)
         {
             groups[name] = new List<GameObject>();
@@ -48,25 +48,31 @@ public class HeroManager : MonoBehaviour
             }
         }
 
-        // °°Àº ÀÌ¸§À¸·Î 3°³ ÀÌ»ó ÀÖ´Â ±×·ì Ã£±â
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½Ö´ï¿½ ï¿½×·ï¿½ Ã£ï¿½ï¿½
         foreach (var pair in groups)
         {
             if (pair.Value.Count >= 3)
             {
-                // 3°³ Á¦°Å
+                // 3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 for (int i = 0; i < 3; i++)
-                    Destroy(pair.Value[i]);
+                {
+                    PoolManager.Instance.HeroDeSpawn(pair.Value[i]);
+                    //Destroy(pair.Value[i]);
+                }
 
-                // ÇÏÀÌ·¹º§ ·£´ý »ý¼º
+                // ï¿½ï¿½ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 int r = Random.Range(0, highLevelPrefabs.Length);
-                Instantiate(highLevelPrefabs[r], spawnPoint.position, Quaternion.identity);
-
-                Debug.Log(pair.Key + " 3°³·Î High À¯´Ö »ý¼º ¿Ï·á");
+                
+                //Instantiate(highLevelPrefabs[r], spawnPoint.position, Quaternion.identity);
+                RandomGacha.Instance.SpawnHero(highLevelPrefabs[r].gameObject);
+                //PoolManager.Instance.HeroSpawn(highLevelPrefabs[r].gameObject, spawnPoint);
+                
+                Debug.Log(pair.Key + " 3ï¿½ï¿½ï¿½ï¿½ High ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
                 return;
             }
         }
 
-        Debug.Log("°°Àº Á¾·ùÀÇ Low À¯´ÖÀÌ 3°³ ÀÌ»ó ÇÊ¿äÇÕ´Ï´Ù.");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Low ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½Ê¿ï¿½ï¿½Õ´Ï´ï¿½.");
     }
 
     public void TryUpgradeHighToSpecial()
@@ -78,16 +84,22 @@ public class HeroManager : MonoBehaviour
 
             if (unitA != null && unitB != null)
             {
-                Destroy(unitA);
-                Destroy(unitB);
+                //Destroy(unitA);
+                PoolManager.Instance.HeroDeSpawn(unitA);
+                PoolManager.Instance.HeroDeSpawn(unitB);
+                //Destroy(unitB);
 
-                Instantiate(pair.resultPrefab, spawnPoint.position, Quaternion.identity);
-                Debug.Log($"{pair.requiredA} + {pair.requiredB} ¡æ Special »ý¼º");
+                
+                //Instantiate(pair.resultPrefab, spawnPoint.position, Quaternion.identity);
+                //PoolManager.Instance.HeroSpawn(pair.resultPrefab, spawnPoint);
+                RandomGacha.Instance.SpawnHero(pair.resultPrefab);
+                
+                Debug.Log($"{pair.requiredA} + {pair.requiredB} ï¿½ï¿½ Special ï¿½ï¿½ï¿½ï¿½");
                 return;
             }
         }
 
-        Debug.Log("Æ¯¼ö Á¶ÇÕÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+        Debug.Log("Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
     }
 
     private List<GameObject> FindObjectsWithNames(string[] names)
@@ -99,7 +111,7 @@ public class HeroManager : MonoBehaviour
             GameObject[] objs = GameObject.FindGameObjectsWithTag("Hero");
             foreach (GameObject obj in objs)
             {
-                if (obj.name.StartsWith(name))  // ÇÁ¸®ÆÕ ÀÌ¸§¿¡ (Clone) ÀÖÀ» ¼ö ÀÖÀ½
+                if (obj.name.StartsWith(name))  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ (Clone) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 {
                     result.Add(obj);
                 }

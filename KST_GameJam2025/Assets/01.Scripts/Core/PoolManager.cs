@@ -53,8 +53,29 @@ public class PoolManager : MonoBehaviour
             GameObject targetHero = Instantiate(Resources.Load<GameObject>(heroName),spawnPos);
             //GameObject targetHero = Resources.Load<GameObject>(heroName);
             targetHero.transform.SetParent(spawnPos);
+            targetHero.transform.rotation = Quaternion.identity;
             targetHero.transform.position = spawnPos.position;
             //targetHero.SetActive(true);
+        }
+    }
+    
+    public void HeroSpawn(GameObject heroObj, Transform spawnPos)
+    {
+        string heroName = heroObj.name;
+        
+        if (IsInList(heroName, heroList))
+        {
+            GameObject targetHero = heroList.Find(hero => hero.name == heroName);
+            heroList.Remove(targetHero);
+            targetHero.transform.SetParent(spawnPos);
+            targetHero.transform.position = spawnPos.position;
+            targetHero.SetActive(true);
+        }
+        else
+        {
+            GameObject targetHero = Instantiate(Resources.Load<GameObject>(heroName), spawnPos);
+            targetHero.transform.SetParent(spawnPos);
+            targetHero.transform.position = spawnPos.position;
         }
     }
 

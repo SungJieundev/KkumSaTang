@@ -28,8 +28,13 @@ public class RandomGacha : MonoBehaviour
     private List<Transform> _allSlots   = new List<Transform>();   // 16칸 전부
     private System.Random  _rng         = new System.Random();     // C# 난수
 
+    public static RandomGacha Instance;
+
     private void Awake()
     {
+        if(Instance == null)
+            Instance = this;
+        
         // 코인 룰렛 요소 추가
         coinGachaList.Add("Low_WhiteBread");
         // coinGachaList.Add("Low_Baguette");
@@ -75,6 +80,26 @@ public class RandomGacha : MonoBehaviour
         // 3) 프리팹 인스턴스 → 슬롯의 자식으로
         //GameObject hero = Instantiate(heroPrefab, targetSlot.position, Quaternion.identity, targetSlot);
         PoolManager.Instance.HeroSpawn(heroName, targetSlot.transform);
+    }
+    
+    public void SpawnHero(GameObject hero)
+    {
+        // 1) 아직 비어 있는 슬롯만 필터
+        List<Transform> emptySlots = _allSlots.FindAll(slot => slot.childCount == 0);
+
+        if (emptySlots.Count == 0)
+        {
+            Debug.LogWarning("빈 슬롯이 없습니다!");   // 다 차면 경고만
+            return;
+        }
+
+        // 2) 랜덤으로 하나 선택
+        int pick = _rng.Next(emptySlots.Count);
+        Transform targetSlot = emptySlots[pick];
+
+        // 3) 프리팹 인스턴스 → 슬롯의 자식으로
+        //GameObject hero = Instantiate(heroPrefab, targetSlot.position, Quaternion.identity, targetSlot);
+        PoolManager.Instance.HeroSpawn(hero, targetSlot.transform);
     }
 
     
