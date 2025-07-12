@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class RandomGacha : MonoBehaviour
@@ -12,9 +14,9 @@ public class RandomGacha : MonoBehaviour
     private int _specialGacha1Cost = 0;
     private int _specialGacha2Cost = 0;
     
-    public List<string> coinGachaList = new List<string>();
-    public List<string> specialGacha1List = new List<string>();
-    public List<string> specialGacha2List = new List<string>();
+    public List<string> lowGachaList = new List<string>(); 
+    public List<string> highGachaList = new List<string>();
+    public List<string> specialGachaList = new List<string>();
     
     public GameObject coinGachaPanel;
     public TMP_Text coinGachaPriceText;
@@ -30,28 +32,40 @@ public class RandomGacha : MonoBehaviour
 
     public static RandomGacha Instance;
 
+    public UnityEvent onBangEvent; 
+
     private void Awake()
     {
         if(Instance == null)
             Instance = this;
         
-        // 코인 룰렛 요소 추가
-        coinGachaList.Add("Low_WhiteBread");
-        // coinGachaList.Add("Low_Baguette");
-        // coinGachaList.Add("Low_RollBread");
-        // coinGachaList.Add("Low_Croissant");
+        // 하위등급 요소추가
+        lowGachaList.Add("Low_WhiteBread");
+        lowGachaList.Add("Low_Baguette");
+        lowGachaList.Add("Low_RollBread");
+        lowGachaList.Add("Low_Croissant");
         
-        //스페셜가챠 1 요소 추가
-        specialGacha1List.Add("Boom");
-        specialGacha1List.Add("return");
-        specialGacha1List.Add("3");
-        specialGacha1List.Add("4");
+        // 상위등급 요소추가
+        highGachaList.Add("High_Chestnut Loaf");
+        highGachaList.Add("High_Choco_Shell_Bread");
+        highGachaList.Add("High_Custard_Cream_Bun");
+        highGachaList.Add("High_Melon Pan");
+        highGachaList.Add("High_Strawberry_Muffin Variant");
+        highGachaList.Add("High_Sweet_Red_Bean_Bun");
         
-        //스페셜가챠 2 요소 추가
-        specialGacha2List.Add("5");
-        specialGacha2List.Add("6");
-        specialGacha2List.Add("7");
-        specialGacha2List.Add("8");
+        highGachaList.Add("Bang");
+        highGachaList.Add("Bang");
+        highGachaList.Add("Bang");
+        highGachaList.Add("Bang");
+        highGachaList.Add("Bang");
+        highGachaList.Add("Bang");
+        
+        
+        //최상위 등급 요소 추가
+        specialGachaList.Add("5");
+        specialGachaList.Add("6");
+        specialGachaList.Add("7");
+        specialGachaList.Add("8");
         
         // SpawnPoint 아래 자식(A1~D4) 전부 수집
         foreach (Transform child in spawnPointParent)
@@ -119,18 +133,37 @@ public class RandomGacha : MonoBehaviour
     public void CoinGachaButtonClick()
     {
         //영웅 랜덤 뽑기
-        string gachaResult = RandomGachaSystem(coinGachaList);
+        string gachaResult = RandomGachaSystem(lowGachaList);
         //Debug.Log(RandomGachaSystem(coinGachaList));
-        
-        //잠시 버튼 위에 보였다 사라지기
-        PopUpPricePanel(coinGachaPanel, coinGachaPriceText, gachaResult);
-        
-        //뽑힌 영웅 랜덤한 위치에 생성
-        SpawnHero(gachaResult);
 
+        if (IsBang(gachaResult) == false)
+        {
+            //잠시 버튼 위에 보였다 사라지기
+            PopUpPricePanel(coinGachaPanel, coinGachaPriceText, gachaResult);
+        
+            //뽑힌 영웅 랜덤한 위치에 생성
+            SpawnHero(gachaResult);
+        }
+        else
+        {
+            // 꽝이벤트 발행
+            onBangEvent.Invoke();
+        }
     }
-
     
+    
+
+    public bool IsBang(string result)
+    {
+        if (result == "Bang")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     
     public void PopUpPricePanel(GameObject panel,TMP_Text tmp, string text)
     {
@@ -148,11 +181,11 @@ public class RandomGacha : MonoBehaviour
     
     public void SpecialGacha1ButtonClick()
     {
-        Debug.Log(RandomGachaSystem(specialGacha1List));
+        Debug.Log(RandomGachaSystem(highGachaList));
     }
     public void SpecialGacha2ButtonClick()
     {
-        Debug.Log(RandomGachaSystem(specialGacha2List));
+        Debug.Log(RandomGachaSystem(specialGachaList));
     }
     
     //public void 

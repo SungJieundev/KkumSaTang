@@ -9,10 +9,12 @@ public class PoolManager : MonoBehaviour
     public static PoolManager Instance;
     
     public List<GameObject> heroList = new List<GameObject>();
+    public List<GameObject> monsterList = new List<GameObject>();
     public Queue<GameObject> bulletQueue = new Queue<GameObject>();
     
     public Transform heroPooler = null;
     public Transform bulletPooler = null;
+    public Transform monsterPooler = null;
 
     public GameObject bulletPrefab;
     //public GameObject heroPrefab;
@@ -38,6 +40,33 @@ public class PoolManager : MonoBehaviour
         return isInlist;
     }
 
+    public void MonsterSpawn(GameObject monsterObj, Transform spawnPos)
+    {
+        string monsterName = monsterObj.name;
+        
+        if (IsInList(monsterName, monsterList))
+        {
+            GameObject targetMonster = monsterList.Find(monster => monster.name == monsterName);
+            monsterList.Remove(targetMonster);
+            targetMonster.transform.SetParent(spawnPos);
+            targetMonster.transform.position = spawnPos.position;
+            targetMonster.SetActive(true);
+        }
+        else
+        {
+            GameObject targetMonster = Instantiate(Resources.Load<GameObject>(monsterName), spawnPos);
+            targetMonster.transform.SetParent(spawnPos);
+            targetMonster.transform.position = spawnPos.position;
+        }
+    }
+
+    public void MonsterDeSpawn(GameObject monsterObj)
+    {
+        monsterObj.SetActive(false);
+        monsterList.Add(monsterObj);
+        monsterObj.transform.SetParent(monsterPooler);
+    }
+
     public void HeroSpawn(string heroName, Transform spawnPos)
     {
         if (IsInList(heroName, heroList))
@@ -52,6 +81,9 @@ public class PoolManager : MonoBehaviour
         {
             GameObject targetHero = Instantiate(Resources.Load<GameObject>(heroName),spawnPos);
             //GameObject targetHero = Resources.Load<GameObject>(heroName);
+            
+            targetHero.gameObject.name = heroName;
+            
             targetHero.transform.SetParent(spawnPos);
             targetHero.transform.rotation = Quaternion.identity;
             targetHero.transform.position = spawnPos.position;

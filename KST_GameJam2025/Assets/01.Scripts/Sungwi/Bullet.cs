@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
             direction = (target.transform.position - transform.position).normalized;
         }
 
-        //3ÃÊ µÚ ÀÚµ¿ ¹İÈ¯ ¿¹¾à
+        //3ì´ˆ ë’¤ ìë™ ë°˜í™˜ ì˜ˆì•½
         Invoke("AutoDespawn", 3f);
     }
 
@@ -27,14 +27,14 @@ public class Bullet : MonoBehaviour
     {
         if (target == null)
         {
-            AutoDespawn(); // Å¸°ÙÀÌ »ç¶óÁö¸é ¹Ù·Î ¹İÈ¯
+            AutoDespawn(); // íƒ€ê²Ÿì´ ì‚¬ë¼ì§€ë©´ ë°”ë¡œ ë°˜í™˜
             return;
         }
 
-        // ÀÌµ¿
+        // ì´ë™
         transform.position += direction * speed * Time.deltaTime;
 
-        // Ãæµ¹ °Å¸® ÆÇÁ¤
+        // ì¶©ëŒ ê±°ë¦¬ íŒì •
         if (Vector3.Distance(transform.position, target.transform.position) < 0.5f)
         {
             MonsterHp hp = target.GetComponent<MonsterHp>();
@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
                 hp.TakeDamage(damage);
             }
 
-            CancelInvoke("AutoDespawn"); // ÀÌ¹Ì ¸íÁßÇßÀ¸¹Ç·Î ÀÚµ¿ ¹İÈ¯ ¿¹¾à Ãë¼Ò
+            CancelInvoke("AutoDespawn"); // ì´ë¯¸ ëª…ì¤‘í–ˆìœ¼ë¯€ë¡œ ìë™ ë°˜í™˜ ì˜ˆì•½ ì·¨ì†Œ
             PoolManager.Instance.BulletDeSpawn(gameObject);
         }
     }
@@ -55,6 +55,6 @@ public class Bullet : MonoBehaviour
 
     private void OnDisable()
     {
-        CancelInvoke(); // È¤½Ã ²¨Áú ¶§ ¿¹¾à Ãë¼Ò Ã³¸®
+        CancelInvoke(); // í˜¹ì‹œ êº¼ì§ˆ ë•Œ ì˜ˆì•½ ì·¨ì†Œ ì²˜ë¦¬
     }
 }

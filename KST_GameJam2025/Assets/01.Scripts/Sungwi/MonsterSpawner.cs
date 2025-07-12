@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    [Header("¼³Á¤")]
-    public GameObject[] monsterPrefabs;     // »ı¼º °¡´ÉÇÑ ¿©·¯ ¸ó½ºÅÍ ÇÁ¸®ÆÕµé
-    public Transform[] movePoints;          // ¸ó½ºÅÍ°¡ ÀÌµ¿ÇÒ °æ·Î Æ÷ÀÎÆ®µé
-    public float spawnInterval = 5f;        // ¸ó½ºÅÍ »ı¼º ÁÖ±â (ÃÊ)
-    public float monsterSpeed = 2f;         // ¸ó½ºÅÍ ÀÌµ¿ ¼Óµµ
+    [Header("ì„¤ì •")]
+    public GameObject[] monsterPrefabs;     // ìƒì„± ê°€ëŠ¥í•œ ì—¬ëŸ¬ ëª¬ìŠ¤í„° í”„ë¦¬íŒ¹ë“¤
+    public Transform[] movePoints;          // ëª¬ìŠ¤í„°ê°€ ì´ë™í•  ê²½ë¡œ í¬ì¸íŠ¸ë“¤
+    public float spawnInterval = 5f;        // ëª¬ìŠ¤í„° ìƒì„± ì£¼ê¸° (ì´ˆ)
+    public float monsterSpeed = 2f;         // ëª¬ìŠ¤í„° ì´ë™ ì†ë„
 
     void Start()
     {
-        // À¯È¿¼º °Ë»ç
+        // ìœ íš¨ì„± ê²€ì‚¬
         if (monsterPrefabs.Length == 0)
         {
-            Debug.LogError("¸ó½ºÅÍ ÇÁ¸®ÆÕÀÌ ¼³Á¤µÇÁö ¾Ê¾Ò½À´Ï´Ù!");
+            Debug.LogError("ëª¬ìŠ¤í„° í”„ë¦¬íŒ¹ì´ ì„¤ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤!");
             return;
         }
 
         if (movePoints.Length < 2)
         {
-            Debug.LogError("movePoints´Â ÃÖ¼Ò 2°³ ÀÌ»óÀÌ ÇÊ¿äÇÕ´Ï´Ù!");
+            Debug.LogError("movePointsëŠ” ìµœì†Œ 2ê°œ ì´ìƒì´ í•„ìš”í•©ë‹ˆë‹¤!");
             return;
         }
 
-        // ¸ó½ºÅÍ »ı¼º ·çÇÁ ½ÃÀÛ
+        // ëª¬ìŠ¤í„° ìƒì„± ë£¨í”„ ì‹œì‘
         StartCoroutine(SpawnMonsterLoop());
     }
 
@@ -55,7 +55,7 @@ public class MonsterSpawner : MonoBehaviour
             int nextIndex = (index + 1) % movePoints.Length;
             Vector3 target = movePoints[nextIndex].position;
 
-            // ¸ó½ºÅÍ°¡ target ÁöÁ¡±îÁö ÀÌµ¿
+            // ëª¬ìŠ¤í„°ê°€ target ì§€ì ê¹Œì§€ ì´ë™
             while (monster != null && !monster.Equals(null) && Vector3.Distance(monster.transform.position, target) > 0.05f)
             {
                 monster.transform.position = Vector3.MoveTowards(

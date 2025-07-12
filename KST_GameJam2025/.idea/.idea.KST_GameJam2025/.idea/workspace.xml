@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b031a002-6f9a-4424-ba76-e8d97d1017f8" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KST_GameJam2025/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KST_GameJam2025/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/LSG.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/LSG.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/PoolManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/PoolManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Jieun/RandomGacha.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Jieun/RandomGacha.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/HeroManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/HeroManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/Bullet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/MoneyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/MoneyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/MonsterSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Sungwi/MonsterSpawner.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +24,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Core/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Core/PoolManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Jieun/GachaEventFeedback.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Jieun/RandomGacha.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -36,7 +39,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Jieun1&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -98,6 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1752234013130</updated>
       <workItem from="1752234014169" duration="12026000" />
+      <workItem from="1752309207528" duration="7764000" />
     </task>
     <servers />
   </component>

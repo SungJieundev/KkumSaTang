@@ -29,7 +29,7 @@ public class MoneyManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("ÀÜ¾× ºÎÁ·!");
+            Debug.Log("ì”ì•¡ ë¶€ì¡±!");
             return false;
         }
     }
@@ -37,6 +37,6 @@ public class MoneyManager : MonoBehaviour
     private void UpdateMoneyText()
     {
         if (moneyText != null)
-            moneyText.text = "ÇöÀç ±İ¾×: " + currentMoney.ToString("N0") + "¿ø";
+            moneyText.text = "í˜„ì¬ ê¸ˆì•¡: " + currentMoney.ToString("N0") + "ì›";
     }
 }
