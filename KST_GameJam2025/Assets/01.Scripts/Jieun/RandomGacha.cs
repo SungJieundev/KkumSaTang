@@ -11,15 +11,21 @@ using Random = UnityEngine.Random;
 public class RandomGacha : MonoBehaviour
 {
     private int _coinGachaCost = 0;
-    private int _specialGacha1Cost = 0;
-    private int _specialGacha2Cost = 0;
+    private int _highGachaCost = 0;
+    private int _specialGachaCost = 0;
     
     public List<string> lowGachaList = new List<string>(); 
     public List<string> highGachaList = new List<string>();
     public List<string> specialGachaList = new List<string>();
     
-    public GameObject coinGachaPanel;
-    public TMP_Text coinGachaPriceText;
+    public GameObject lowGachaPanel;
+    public TMP_Text lowGachaPriceText;
+    
+    public GameObject highGachaPanel;
+    public TMP_Text highGachaPriceText;
+    
+    public GameObject specialGachaPanel;
+    public TMP_Text specialGachaPriceText;
     
     [Header("스폰 지점 부모 - 빈 오브젝트")]
     [SerializeField] private Transform spawnPointParent;   // “SpawnPoint” 오브젝트 drag
@@ -130,7 +136,7 @@ public class RandomGacha : MonoBehaviour
 
     
 
-    public void CoinGachaButtonClick()
+    public void LowGachaButtonClick()
     {
         //영웅 랜덤 뽑기
         string gachaResult = RandomGachaSystem(lowGachaList);
@@ -139,7 +145,7 @@ public class RandomGacha : MonoBehaviour
         if (IsBang(gachaResult) == false)
         {
             //잠시 버튼 위에 보였다 사라지기
-            PopUpPricePanel(coinGachaPanel, coinGachaPriceText, gachaResult);
+            PopUpPricePanel(lowGachaPanel, lowGachaPriceText, gachaResult);
         
             //뽑힌 영웅 랜덤한 위치에 생성
             SpawnHero(gachaResult);
@@ -149,6 +155,15 @@ public class RandomGacha : MonoBehaviour
             // 꽝이벤트 발행
             onBangEvent.Invoke();
         }
+    }
+    
+    public void HighGachaButtonClick()
+    {
+        Debug.Log(RandomGachaSystem(highGachaList));
+    }
+    public void SpecialGacha2ButtonClick()
+    {
+        Debug.Log(RandomGachaSystem(specialGachaList));
     }
     
     
@@ -179,14 +194,7 @@ public class RandomGacha : MonoBehaviour
             .AppendCallback(() => panel.SetActive(false));
     }
     
-    public void SpecialGacha1ButtonClick()
-    {
-        Debug.Log(RandomGachaSystem(highGachaList));
-    }
-    public void SpecialGacha2ButtonClick()
-    {
-        Debug.Log(RandomGachaSystem(specialGachaList));
-    }
+    
     
     //public void 
 
