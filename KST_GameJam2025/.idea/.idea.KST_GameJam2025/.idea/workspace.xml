@@ -7,8 +7,10 @@
     <list default="true" id="b031a002-6f9a-4424-ba76-e8d97d1017f8" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KST_GameJam2025/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KST_GameJam2025/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/MainMerge3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/MainMerge3.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/PoolManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/PoolManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Jieun/RandomGacha.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Jieun/RandomGacha.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05.Audio/BGMTest.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05.Audio/BGMTest.mp3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
