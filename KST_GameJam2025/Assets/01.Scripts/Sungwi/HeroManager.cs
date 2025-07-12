@@ -59,7 +59,7 @@ public class HeroManager : MonoBehaviour
 
                 // 하이레벨 랜덤 생성
                 int r = Random.Range(0, highLevelPrefabs.Length);
-                Instantiate(highLevelPrefabs[r], spawnPoint.position, Quaternion.identity);
+                Instantiate(highLevelPrefabs[r], spawnPoint.position, Quaternion.identity); //생성
 
                 Debug.Log(pair.Key + " 3개로 High 유닛 생성 완료");
                 return;
