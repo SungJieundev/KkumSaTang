@@ -15,18 +15,26 @@ public class MoneyManager : MonoBehaviour
     
     public int currentDia = 0;
     public int defaultDia = 0;
+    
+    public static MoneyManager Instance;
+
+    private void Awake()
+    {
+        if(Instance == null) Instance = this;
+    }
 
     void Start()
     {
         currentMoney = defaultMoney;
+        currentDia = defaultDia;
         UpdateMoneyText();
         UpdateDiaText();
     }
 
     private void Update()
     {
-        DebugPlusMoney();
-        DebugPlusDia();
+      //  DebugPlusMoney();
+      //  DebugPlusDia();
     }
 
     public void DebugPlusMoney()
@@ -89,12 +97,12 @@ public class MoneyManager : MonoBehaviour
     private void UpdateMoneyText()
     {
         if (moneyText != null)
-            moneyText.text = "현재 금액: " + currentMoney.ToString("N0") + "원";
+            moneyText.text = "x " + currentMoney.ToString("N0") + "";
     }
     
     private void UpdateDiaText()
     {
         if (diaText != null)
-            diaText.text = "현재 금액: " + currentDia.ToString("N0") + "원";
+            diaText.text = "x " + currentDia.ToString("N0") + "";
     }
 }

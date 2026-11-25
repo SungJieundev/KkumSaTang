@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TowerAttack : MonoBehaviour
 {
-    [Header("°ø°Ý ¼³Á¤")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public float attackInterval = 1f;
     public float attackPower = 2f;
-    public float attackRange = 2f; // °Å¸®·Î Ã³¸®
+    public float attackRange = 2f; // ï¿½Å¸ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 
-    [Header("ÃÑ¾Ë ÇÁ¸®ÆÕ")]
+    [Header("ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public GameObject bulletPrefab;
     public Transform firePoint;
 
@@ -63,6 +63,7 @@ public class TowerAttack : MonoBehaviour
     void Attack(GameObject target)
     {
         GameObject bullet = PoolManager.Instance.BulletSpawn(firePoint);
+        AudioManager.Instance.PlaySystem("Gacha");AudioManager.Instance.PlaySystem("LowBullet");
         if (bullet == null) return;
 
         Bullet bulletScript = bullet.GetComponent<Bullet>();
@@ -72,7 +73,7 @@ public class TowerAttack : MonoBehaviour
         }
     }
 
-    // °ø°Ý·Â, ¼Óµµ, ¹üÀ§ ¼¼ÆÃ¿ë
+    // ï¿½ï¿½ï¿½Ý·ï¿½, ï¿½Óµï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½
     public void SetAttackStats(float power, float interval, float range)
     {
         attackPower = power;

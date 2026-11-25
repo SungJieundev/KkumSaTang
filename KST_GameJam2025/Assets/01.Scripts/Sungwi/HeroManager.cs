@@ -19,6 +19,7 @@ public class HeroManager : MonoBehaviour
     [Header("Special 업그레이드 조합 목록")]
     public List<HeroUpgradePair> specialUpgradePairs;
 
+    
     /// <summary>
     /// Low 레벨 유닛 3개를 모으면 High 레벨 유닛으로 업그레이드
     /// </summary>
@@ -56,7 +57,7 @@ public class HeroManager : MonoBehaviour
         // 그룹 중에 3개 이상 존재하는 유닛이 있으면 업그레이드
         foreach (var pair in groups)
         {
-            if (pair.Value.Count >= 3)
+            if (pair.Value.Count >= 3 && !GameManager.Instance.IsSlotFull)
             {
                 // 기존 Low 유닛 3개 제거 (풀링 방식 사용)
                 for (int i = 0; i < 3; i++)
@@ -66,8 +67,13 @@ public class HeroManager : MonoBehaviour
 
                 // 랜덤 High 유닛 생성
                 int r = Random.Range(0, highLevelPrefabs.Length);
+                
+                
                 RandomGacha.Instance.SpawnHero(highLevelPrefabs[r].gameObject);
-
+                
+                
+                AudioManager.Instance.PlaySystem("Merge");
+                
                 Debug.Log(pair.Key + " 유닛 3개가 합쳐져 High 레벨 유닛 생성됨!");
                 return;
             }
@@ -81,27 +87,72 @@ public class HeroManager : MonoBehaviour
     /// </summary>
     public void TryUpgradeHighToSpecial()
     {
+        GameObject[] allHeroes = GameObject.FindGameObjectsWithTag("Hero");
+
         foreach (var pair in specialUpgradePairs)
         {
-            GameObject unitA = GameObject.Find(pair.requiredA);
-            GameObject unitB = GameObject.Find(pair.requiredB);
+            GameObject unitA = null;
+            GameObject unitB = null;
 
-            if (unitA != null && unitB != null)
+            foreach (GameObject obj in allHeroes)
             {
-                // 기존 유닛 제거 (풀링 방식)
+                if (unitA == null && obj.name.StartsWith(pair.requiredA))
+                {
+                    unitA = obj;
+                    continue;
+                }
+
+                if (unitB == null && obj.name.StartsWith(pair.requiredB))
+                {
+                    unitB = obj;
+                }
+
+                if (unitA != null && unitB != null)
+                    break;
+            }
+
+            if (unitA != null && unitB != null && GameManager.Instance.IsSlotFull == false)
+            {
                 PoolManager.Instance.HeroDeSpawn(unitA);
                 PoolManager.Instance.HeroDeSpawn(unitB);
 
-                // Special 유닛 생성
                 RandomGacha.Instance.SpawnHero(pair.resultPrefab);
+                
+                
+                AudioManager.Instance.PlaySystem("Merge");
 
                 Debug.Log($"{pair.requiredA} + {pair.requiredB} → Special 유닛 생성!");
+                
+                RandomGacha.Instance.LoadEmptySlot();
                 return;
             }
         }
 
         Debug.Log("조건에 맞는 Special 조합을 찾을 수 없습니다.");
     }
+    // public void TryUpgradeHighToSpecial()
+    // {
+    //     foreach (var pair in specialUpgradePairs)
+    //     {
+    //         GameObject unitA = GameObject.Find(pair.requiredA);
+    //         GameObject unitB = GameObject.Find(pair.requiredB);
+    //
+    //         if (unitA != null && unitB != null)
+    //         {
+    //             // 기존 유닛 제거 (풀링 방식)
+    //             PoolManager.Instance.HeroDeSpawn(unitA);
+    //             PoolManager.Instance.HeroDeSpawn(unitB);
+    //
+    //             // Special 유닛 생성
+    //             RandomGacha.Instance.SpawnHero(pair.resultPrefab);
+    //
+    //             Debug.Log($"{pair.requiredA} + {pair.requiredB} → Special 유닛 생성!");
+    //             return;
+    //         }
+    //     }
+    //
+    //     Debug.Log("조건에 맞는 Special 조합을 찾을 수 없습니다.");
+    // }
 
     /// <summary>
     /// 이름 배열에 해당하는 유닛들을 모두 찾아 리스트로 반환

@@ -59,14 +59,18 @@ public class ObjectClick : MonoBehaviour
     // 선택된 오브젝트 삭제 (예: 팔기, 제거 등)
     public void DestroySelectedObject()
     {
+        RandomGacha.Instance.LoadEmptySlot();RandomGacha.Instance.LoadEmptySlot();
         if (selectedObject != null)
         {
             Debug.Log($"삭제됨: {selectedObject.name}");
             Destroy(selectedObject);
             selectedObject = null;
+            RandomGacha.Instance.LoadEmptySlot();RandomGacha.Instance.LoadEmptySlot();
+           
         }
         else
         {
+            RandomGacha.Instance.LoadEmptySlot();
             Debug.Log("선택된 오브젝트가 없습니다.");
         }
     }
@@ -77,15 +81,16 @@ public class ObjectClick : MonoBehaviour
         if (index < 0 || index >= characterPrefabs.Length)
         {
             Debug.LogWarning("유효하지 않은 프리팹 인덱스입니다.");
+            RandomGacha.Instance.LoadEmptySlot();
             return null;
         }
-
+        
         // 프리팹 생성
         GameObject obj = Instantiate(characterPrefabs[index], spawnPos, Quaternion.identity);
 
         // 자신이 몇 번째 프리팹에서 왔는지 기억
         obj.AddComponent<HeroIdentity>().prefabIndex = index;
-
+        RandomGacha.Instance.LoadEmptySlot();
         return obj;
     }
 }
