@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,16 +8,19 @@ using UnityEngine.Audio;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public GameObject WinPanel;
+    
+    public bool IsSlotFull = false;
 
-    [Header("¿þÀÌºê ¼³Á¤")]
-    public int waveCount = 1; // 0ÀÌ ¾Æ´Ï¶ó 1ºÎÅÍ ½ÃÀÛÇØ¾ß ÇÔ
+    [Header("ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½")]
+    public int waveCount = 1; // 0ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½
     public int maxWaves = 10;
-    public float waveDuration = 60f; // °¢ ¿þÀÌºê ½Ã°£ (ÃÊ)
+    public float waveDuration = 60f; // ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Ã°ï¿½ (ï¿½ï¿½)
 
     [Header("UI")]
-    public TMP_Text waveText;      // ¿þÀÌºê Ç¥½Ã ÅØ½ºÆ®
-    public TMP_Text timerText;     // ³²Àº ½Ã°£ Ç¥½Ã ÅØ½ºÆ®
-    public CanvasGroup waveCanvasGroup; // Wave ÅØ½ºÆ® ÆäÀÌµå¿ë
+    public TMP_Text waveText;      // ï¿½ï¿½ï¿½Ìºï¿½ Ç¥ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
+    public TMP_Text timerText;     // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ Ç¥ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
+    public CanvasGroup waveCanvasGroup; // Wave ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½Ìµï¿½ï¿½
 
     private float currentTimer = 0f;
     private bool waveActive = false;
@@ -31,6 +35,15 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(WaveLoop());
+        AudioManager.Instance.PlayBGM("GameBGM");
+    }
+
+    private void Update()
+    {
+        if (waveCount > 10)
+        {
+            WinPanel.SetActive((true));
+        }
     }
 
     private IEnumerator WaveLoop()
@@ -50,9 +63,10 @@ public class GameManager : MonoBehaviour
             }
 
             waveActive = false;
+            MoneyManager.Instance.AddDia(1);
         }
 
-        // ¸ðµç ¿þÀÌºê Á¾·á ½Ã Ã³¸® (¿É¼Ç)
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ (ï¿½É¼ï¿½)
         timerText.text = "All Waves Cleared!";
     }
 
@@ -73,7 +87,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(2f); // Áß°£ Ç¥½Ã ½Ã°£
+        yield return new WaitForSeconds(2f); // ï¿½ß°ï¿½ Ç¥ï¿½ï¿½ ï¿½Ã°ï¿½
 
         // Fade Out
         t = 0;

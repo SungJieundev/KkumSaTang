@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System; // ÀÌº¥Æ®¿ë
+using System; // ï¿½Ìºï¿½Æ®ï¿½ï¿½
 
 public class MonsterManager : MonoBehaviour
 {
 
-    [Header("¸ó½ºÅÍ ¼ö ¼³Á¤")]
+    public GameObject FailPanel;
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public int maxMonsterCount = 100;
 
     [Header("UI")]
-    public Image monsterGaugeImage;     // °ÔÀÌÁö¹Ù¿ë ÀÌ¹ÌÁö (Image Type: Filled·Î ¼³Á¤)
+    public Image monsterGaugeImage;     // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¿ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ (Image Type: Filledï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 
-    // ÀÌº¥Æ® Á¤ÀÇ
-    public event Action OnMonsterWarning;        // 30¸¶¸® ³²¾ÒÀ» ¶§
-    public event Action OnMonsterNearLimit;      // 10¸¶¸® ³²¾ÒÀ» ¶§
-    public event Action OnMonsterLimitExceeded;  // ÃÖ´ë ÃÊ°ú ½Ã
+    // ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+    public event Action OnMonsterWarning;        // 30ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    public event Action OnMonsterNearLimit;      // 10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    public event Action OnMonsterLimitExceeded;  // ï¿½Ö´ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½
 
     private bool warningTriggered = false;
     private bool nearLimitTriggered = false;
@@ -26,7 +27,7 @@ public class MonsterManager : MonoBehaviour
     {
         int currentCount = GameObject.FindGameObjectsWithTag("Monster").Length;
 
-        // °ÔÀÌÁö¹Ù ¾÷µ¥ÀÌÆ® (0~1 »çÀÌ ºñÀ²)
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (0~1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         if (monsterGaugeImage != null)
         {
             float fillRatio = Mathf.Clamp01((float)currentCount / maxMonsterCount);
@@ -35,38 +36,39 @@ public class MonsterManager : MonoBehaviour
 
         int remaining = maxMonsterCount - currentCount;
 
-        // ÀÌº¥Æ® Æ®¸®°Å
+        // ï¿½Ìºï¿½Æ® Æ®ï¿½ï¿½ï¿½ï¿½
         if (!warningTriggered && remaining <= 30)
         {
             warningTriggered = true;
-            Debug.Log("À§Çè: ¸ó½ºÅÍ°¡ 30¸¶¸® ÀÌÇÏ·Î ³²¾Ò½À´Ï´Ù!");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½Í°ï¿½ 30ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ï¿½Ï´ï¿½!");
             OnMonsterWarning?.Invoke();
         }
 
         if (!nearLimitTriggered && remaining <= 10)
         {
             nearLimitTriggered = true;
-            Debug.Log("°æ°í: ¸ó½ºÅÍ°¡ °ÅÀÇ ´Ù Ã¡½À´Ï´Ù!");
+            Debug.Log("ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¡ï¿½ï¿½ï¿½Ï´ï¿½!");
             OnMonsterNearLimit?.Invoke();
         }
 
         if (!exceededTriggered && currentCount >= maxMonsterCount)
         {
+            FailPanel.SetActive(true);
             exceededTriggered = true;
-            Debug.Log("½ÇÆÐ: ÃÖ´ë ¸ó½ºÅÍ ¼ö¸¦ ÃÊ°úÇß½À´Ï´Ù.");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½: ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
             OnMonsterLimitExceeded?.Invoke();
 
-            // ¿¹: °ÔÀÓ¿À¹ö Ã³¸® Ãß°¡ °¡´É
+            // ï¿½ï¿½: ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
             // GameOver();
         }
     }
 
-    // ÇÊ¿ä ½Ã °ÔÀÓ¿À¹ö Ã³¸® ÇÔ¼ö
+    // ï¿½Ê¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½Ô¼ï¿½
     /*
     private void GameOver()
     {
-        // °ÔÀÓ¿À¹ö UI ¶ç¿ì±â, ½Ã°£ ¸ØÃß±â µî
-        Debug.Log("°ÔÀÓ ¿À¹ö!");
+        // ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½, ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ß±ï¿½ ï¿½ï¿½
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
     }
     */
 }

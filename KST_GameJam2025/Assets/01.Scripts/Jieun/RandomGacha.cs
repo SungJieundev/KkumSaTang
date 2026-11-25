@@ -31,6 +31,8 @@ public class RandomGacha : MonoBehaviour
     
     public GameObject specialGachaPanel;
     public TMP_Text specialGachaPriceText;
+
+    public TMP_Text slotWarningText;
     
     [Header("스폰 지점 부모 - 빈 오브젝트")]
     [SerializeField] private Transform spawnPointParent;   // “SpawnPoint” 오브젝트 drag
@@ -53,6 +55,8 @@ public class RandomGacha : MonoBehaviour
         if(Instance == null)
             Instance = this;
         
+        slotWarningText.text = "빈 슬롯이 없습니다!";
+        
         // 하위등급 요소추가
         lowGachaList.Add("Low_WhiteBread");
         lowGachaList.Add("Low_Baguette");
@@ -66,7 +70,7 @@ public class RandomGacha : MonoBehaviour
         highGachaList.Add("High_Melon Pan");
         highGachaList.Add("High_Strawberry_Muffin");
         highGachaList.Add("High_Sweet_Red_Bean_Bun");
-        
+        /*
         highGachaList.Add("Bang");
         highGachaList.Add("Bang");
         highGachaList.Add("Bang");
@@ -80,7 +84,7 @@ public class RandomGacha : MonoBehaviour
         specialGachaList.Add("Bang");
         specialGachaList.Add("Bang");
         specialGachaList.Add("Bang");
-        
+        */
         
         specialGachaList.Add("Low_WhiteBread");
         specialGachaList.Add("Low_Baguette");
@@ -147,7 +151,24 @@ public class RandomGacha : MonoBehaviour
         foreach (Transform child in spawnPointParent)
             _allSlots.Add(child);
     }
+
+    private float startZRot = 2.5f;
+    private float endZRot = -2.5f;
     
+    public void PopUpSlotWarning()
+    {
+        
+        slotWarningText.gameObject.SetActive(true);
+        
+        Sequence seq = DOTween.Sequence();
+        
+        seq.Append(slotWarningText.DOScale(1.1f, 0.1f))
+            .Append(slotWarningText.DOScale(1.0f, 0.1f))
+            .Append(slotWarningText.DOScale(1.1f, 0.1f))
+            .Append(slotWarningText.DOScale(1.0f, 0.1f))
+            
+            .AppendCallback(() => slotWarningText.gameObject.SetActive(false));
+    }
 
     /// <summary>
     /// 비어 있는 칸 중 하나를 골라 Hero를 배치한다
@@ -159,9 +180,13 @@ public class RandomGacha : MonoBehaviour
 
         if (emptySlots.Count == 0)
         {
+            GameManager.Instance.IsSlotFull = true;
+            PopUpSlotWarning();
             Debug.LogWarning("빈 슬롯이 없습니다!");   // 다 차면 경고만
             return;
         }
+        
+        GameManager.Instance.IsSlotFull = false;
 
         // 2) 랜덤으로 하나 선택
         int pick = _rng.Next(emptySlots.Count);
@@ -169,19 +194,45 @@ public class RandomGacha : MonoBehaviour
 
         // 3) 프리팹 인스턴스 → 슬롯의 자식으로
         //GameObject hero = Instantiate(heroPrefab, targetSlot.position, Quaternion.identity, targetSlot);
+        
+        
+        
         PoolManager.Instance.HeroSpawn(heroName, targetSlot.transform);
     }
     
-    public void SpawnHero(GameObject hero)
+    public void LoadEmptySlot()
     {
         // 1) 아직 비어 있는 슬롯만 필터
         List<Transform> emptySlots = _allSlots.FindAll(slot => slot.childCount == 0);
 
         if (emptySlots.Count == 0)
         {
-            Debug.LogWarning("빈 슬롯이 없습니다!");   // 다 차면 경고만
-            return;
+            GameManager.Instance.IsSlotFull = true;
+            Debug.LogWarning("빈 슬롯이 없습니다!");
+            PopUpSlotWarning(); // 다 차면 경고만
         }
+        else
+        {
+            GameManager.Instance.IsSlotFull = false;
+        }
+    }
+    
+    public void SpawnHero(GameObject hero)
+    {
+       
+        List<Transform> emptySlots = _allSlots.FindAll(slot => slot.childCount == 0);
+
+        if (emptySlots.Count == 0)
+        {
+            GameManager.Instance.IsSlotFull = true;
+            Debug.LogWarning("빈 슬롯이 없습니다!");
+            PopUpSlotWarning(); // 다 차면 경고만
+        }
+        else
+        {
+            GameManager.Instance.IsSlotFull = false;
+        }
+        
 
         // 2) 랜덤으로 하나 선택
         int pick = _rng.Next(emptySlots.Count);
@@ -193,7 +244,7 @@ public class RandomGacha : MonoBehaviour
     }
 
     
-    private string RandomGachaSystem(List<string> targetList)
+    public string RandomGachaSystem(List<string> targetList)
     {
         string result = "";
         
@@ -213,16 +264,41 @@ public class RandomGacha : MonoBehaviour
 
     private void Update()
     {
-        if(moneyManager.currentMoney < lowGachaCost) lowGachaButton.interactable = false;
-        if(moneyManager.currentDia < highGachaCost) highGachaButton.interactable = false;
-        if(moneyManager.currentDia < specialGachaCost) specialGachaButton.interactable = false;
+        if (moneyManager.currentMoney < lowGachaCost || GameManager.Instance.IsSlotFull == true)
+        {
+            lowGachaButton.interactable = false;
+        }
+        else
+        {
+            lowGachaButton.interactable = true;
+        }
+
+        if (moneyManager.currentDia < highGachaCost|| GameManager.Instance.IsSlotFull == true)
+        {
+            highGachaButton.interactable = false;
+        }
+        else
+        {
+            highGachaButton.interactable = true;
+        }
+
+        if (moneyManager.currentDia < specialGachaCost || GameManager.Instance.IsSlotFull == true)
+        {
+            specialGachaButton.interactable = false;
+        }
+        else
+        {
+            specialGachaButton.interactable = true;
+        } 
     }
 
 
     public void LowGachaButtonClick()
     {
+        
         if (moneyManager != null && moneyManager.SpendMoney(lowGachaCost))
         {
+            AudioManager.Instance.PlaySystem("Oven");
             //영웅 랜덤 뽑기
             string gachaResult = RandomGachaSystem(lowGachaList);
             
@@ -231,12 +307,16 @@ public class RandomGacha : MonoBehaviour
             
             //뽑힌 영웅 랜덤한 위치에 생성
             if(gachaResult != "Bang") SpawnHero(gachaResult);
+            
+            LoadEmptySlot();
         }
     }
     public void HighGachaButtonClick()
     {
+        LoadEmptySlot();
         if (moneyManager != null && moneyManager.SpendDia(highGachaCost))
         {
+            AudioManager.Instance.PlaySystem("Oven");
             string gachaResult = RandomGachaSystem(highGachaList);
             PopUpPricePanel(highGachaPanel, highGachaPriceText, heroNameKorean(gachaResult));
             if(gachaResult != "Bang") SpawnHero(gachaResult);
@@ -244,12 +324,15 @@ public class RandomGacha : MonoBehaviour
     }
     public void SpecialGachaButtonClick()
     {
-        if (moneyManager != null && moneyManager.SpendMoney(specialGachaCost))
+        LoadEmptySlot();
+        if (moneyManager != null && moneyManager.SpendDia(specialGachaCost))
         {
+            AudioManager.Instance.PlaySystem("Oven");
             string gachaResult = RandomGachaSystem(specialGachaList);
             PopUpPricePanel(specialGachaPanel, specialGachaPriceText, heroNameKorean(gachaResult));
             if(gachaResult != "Bang") SpawnHero(gachaResult);
         }
+        
     }
 
     // public string heroNameKorean(string engHeroName)

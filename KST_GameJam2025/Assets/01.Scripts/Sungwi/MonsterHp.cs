@@ -7,26 +7,26 @@ public class MonsterHp : MonoBehaviour
     public float maxHp = 100;
     public float currentHp;
 
-    public int rewardMoney = 10000;      // ±âº» º¸»ó±Ý¾×
-    private MoneyManager moneyManager;   // µ· ¸Å´ÏÀú ÂüÁ¶
+    public int rewardMoney = 10000;      // ï¿½âº» ï¿½ï¿½ï¿½ï¿½Ý¾ï¿½
+    private MoneyManager moneyManager;   // ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     void Start()
     {
         currentHp = maxHp;
 
-        // ¾À¿¡ MoneyManager ÀÚµ¿ Ã£±â
+        // ï¿½ï¿½ï¿½ï¿½ MoneyManager ï¿½Úµï¿½ Ã£ï¿½ï¿½
         moneyManager = FindObjectOfType<MoneyManager>();
 
         if (moneyManager == null)
         {
-            Debug.LogWarning("MoneyManager°¡ ¾À¿¡ ¾ø½À´Ï´Ù!");
+            Debug.LogWarning("MoneyManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
         }
     }
 
     public void TakeDamage(float damage)
     {
         currentHp -= damage;
-        Debug.Log($"{gameObject.name} ÇÇ°Ý: ÇöÀç HP {currentHp}");
+        Debug.Log($"{gameObject.name} ï¿½Ç°ï¿½: ï¿½ï¿½ï¿½ï¿½ HP {currentHp}");
 
         if (currentHp <= 0)
         {
@@ -39,8 +39,9 @@ public class MonsterHp : MonoBehaviour
         if (moneyManager != null)
         {
             moneyManager.AddMoney(rewardMoney);
-            Debug.Log($"º¸»ó +{rewardMoney}¿ø! ÇöÀç µ·: {moneyManager.currentMoney}");
+            Debug.Log($"ï¿½ï¿½ï¿½ï¿½ +{rewardMoney}ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½: {moneyManager.currentMoney}");
         }
+        AudioManager.Instance.PlaySystem("MonsterDie");
 
         Destroy(gameObject);
     }

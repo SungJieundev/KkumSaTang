@@ -50,6 +50,7 @@ public class MonsterSpawner : MonoBehaviour
         foreach (int monsterIndex in spawnList)
         {
             SpawnMonster(monsterPrefabs[monsterIndex]);
+            
             yield return new WaitForSeconds(spawnDelay);
         }
 
@@ -92,16 +93,49 @@ public class MonsterSpawner : MonoBehaviour
 
         switch (wave)
         {
-            case 1: result.AddRange(RepeatIndex(0, 6)); break;
-            case 2: result.AddRange(RepeatIndex(0, 4)); result.AddRange(RepeatIndex(1, 2)); break;
-            case 3: result.AddRange(RepeatIndex(0, 3)); result.AddRange(RepeatIndex(1, 3)); result.Add(2); break;
-            case 4: result.AddRange(RepeatIndex(1, 4)); result.AddRange(RepeatIndex(2, 2)); break;
-            case 5: result.AddRange(RepeatIndex(2, 3)); result.Add(3); break;
-            case 6: result.AddRange(RepeatIndex(1, 2)); result.AddRange(RepeatIndex(2, 2)); result.AddRange(RepeatIndex(3, 2)); break;
-            case 7: result.AddRange(RepeatIndex(2, 3)); result.AddRange(RepeatIndex(3, 3)); break;
-            case 8: result.AddRange(RepeatIndex(3, 4)); break;
-            case 9: result.AddRange(RepeatIndex(3, 3)); result.Add(4); break;
-            case 10: result.AddRange(RepeatIndex(4, 2)); break;
+            case 1: 
+                result.AddRange(RepeatIndex(0, 30)); 
+                break;
+            case 2: 
+                result.AddRange(RepeatIndex(0, 40)); 
+                result.AddRange(RepeatIndex(1, 10)); 
+                break;
+            case 3: 
+                result.AddRange(RepeatIndex(0, 25)); 
+                result.AddRange(RepeatIndex(1, 25)); 
+                result.AddRange(RepeatIndex(2, 5)); 
+                result.Add(2); 
+                break;
+            case 4: 
+                result.AddRange(RepeatIndex(1, 30)); 
+                result.AddRange(RepeatIndex(2, 20)); 
+                break;
+            case 5: 
+                result.AddRange(RepeatIndex(2, 40));
+                result.AddRange(RepeatIndex(3, 10)); 
+                result.Add(3); 
+                break;
+            case 6: 
+                result.AddRange(RepeatIndex(0, 20)); 
+                result.AddRange(RepeatIndex(1, 15)); 
+                result.AddRange(RepeatIndex(2, 15)); 
+                result.AddRange(RepeatIndex(3, 15));
+                break;
+            case 7:
+                result.AddRange(RepeatIndex(2, 30)); 
+                result.AddRange(RepeatIndex(3, 15));
+                break;
+            case 8: 
+                result.AddRange(RepeatIndex(3, 30));
+                break;
+            case 9: 
+                result.AddRange(RepeatIndex(3, 20)); 
+                result.AddRange(RepeatIndex(4, 15)); 
+                result.Add(4); 
+                break;
+            case 10: 
+                result.AddRange(RepeatIndex(4, 10)); 
+                break;
         }
 
         return result;
