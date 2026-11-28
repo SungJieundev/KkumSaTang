@@ -1,7 +1,7 @@
-# 베이커리 히어로 (Bakery Hero)
+# 🥐 베이커리 히어로 (Bakery Hero)
 
 ![베이커리 히어로 타이틀 화면](KST_GameJam2025/Assets/Title.png)
-
+**갓 구운 평화를 위한 빵빵 터지는 디펜스!**
 > 오븐에서 빵 히어로를 뽑고 합성해, 마녀의 빵 군단으로부터 우리 빵집을 지키세요.
 
 **베이커리 히어로**는 꿈사탕팀이 2025 대전 인디(inD) 게임잼의 주제인 ‘빵’을 바탕으로 개발한 2D 랜덤 타워 디펜스 게임입니다. 식빵, 바게트, 크루아상처럼 익숙한 빵을 전투에 배치해 빵집을 지킵니다.
@@ -22,7 +22,19 @@
 | 엔진 / 언어 | Unity 2022.3.61f1 / C# |
 | 기본 화면 설정 | 1920 × 1080, 16:9 |
 
-## 수상 및 전시
+## 💾 다운로드
+
+Windows x64용 빌드는 아래 표에서 내려받을 수 있습니다. 
+릴리즈 노트와 전체 버전은 GitHub에서 확인하세요. [GitHub Releases](https://github.com/SungJieundev/KkumSaTang/releases)
+
+| 버전 | 받을 파일 | 실행 파일 |
+| --- | --- | --- |
+| **v0.1.1 · 오류 수정판** | [BakeryHero-v0.1.1-Windows.zip](https://github.com/SungJieundev/KkumSaTang/releases/download/v0.1.1/BakeryHero-v0.1.1-Windows.zip) | `BakeryHero2025.exe` |
+| **v0.1.0 · 게임잼 원본** | [BakeryHero-GameJam-Windows.zip](https://github.com/SungJieundev/KkumSaTang/releases/download/v0.1.0/BakeryHero-GameJam-Windows.zip) | `KST_GameJam2025.exe` |
+
+> ZIP의 압축을 모두 푼 뒤, 표에 적힌 실행 파일을 실행하세요.
+
+## 🏆 수상 및 전시
 
 - **2025.07.11–07.13 · 대전 인디(inD) 게임잼 첫인상 부문 수상**. [목원대학교 행사 결과](https://sanhak.mokwon.ac.kr/sub06/data_form.html?md=read&no=140)
 - **2025.08.15–08.17 · 부산인디커넥트페스티벌(BIC) 2025 전시**. 부산 벡스코 대전글로벌게임센터 공동관에서 선보였습니다. [대전공동관 전시 보도](https://www.news1.kr/local/daejeon-chungnam/5879888)
@@ -51,10 +63,6 @@
 | 아무 키 | 타이틀과 인트로 진행 |
 
 ## 실행 방법
-
-### Windows 빌드
-
-게임잼 당시 Windows x64 빌드의 배포 위치는 [GitHub Releases](https://github.com/SungJieundev/KkumSaTang/releases)입니다. 릴리즈의 첨부 파일 `BakeryHero-Windows.zip`을 내려받아 압축을 풀고, `KST_GameJam2025.exe`를 실행합니다.
 
 ### Unity 에디터에서 실행
 
